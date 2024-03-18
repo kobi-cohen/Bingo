@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div class="ballsList"></div>
+    <button id="btn"> הגרל מספר ידנית</button>
+    <button id="btnAutomatic">הגרל מספר אוטומטית כל 15 שניות</button>
+    <div class="info"></div>
+</body>
+</html>
+<style>
+    
+    .circleBall {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        font-size: 55px;
+        text-align: center;
+        background-color: blueviolet;
+        
+    }
+    .ball{
+        display: inline-block;
+        background-color: aqua;
+        font-size: 35px;
+        width: 40px;
+        height: 40px;
+        margin: 20px;
+    }
+</style>
+
+
+<script>
+    const infoDiv = document.querySelector('.info')
+    const soundList = [
+        {name:1,
+        source:'1.mp3'},
+        {name:2,
+        source:'2.mp3'},
+        {name:3,
+        source:'3.mp3'},
+        {name:4,
+        source:'4.mp3'},
+        {name:5,
+        source:'5.mp3'},
+        {name:6,
+        source:'6.mp3'},
+        {name:7,
+        source:'7.mp3'},
+        {name:8,
+        source:'8.mp3'},
+        {name:9,
+        source:'9.mp3'},
+        {name:10,
+        source:'10.mp3'},
+        {name:11,
+        source:'11.mp3'},
+        {name:12,
+        source:'12.mp3'},
+        {name:13,
+        source:'13.mp3'},
+        {name:14,
+        source:'14.mp3'},
+        {name:15,
+        source:'15.mp3'},
+        {name:16,
+        source:'16.mp3'},
+        {name:17,
+        source:'17.mp3'},
+        {name:18,
+        source:'18.mp3'},
+        {name:19,
+        source:'19.mp3'},
+        {name:19,
+        source:'19.mp3'},
+        {name:20,
+        source:'20.mp3'},
+        {name:21,
+        source:'21.mp3'},
+        {name:22,
+        source:'22.mp3'},
+        {name:23,
+        source:'23.mp3'},
+        {name:24,
+        source:'24.mp3'},
+        {name:25,
+        source:'25.mp3'},
+        {name:26,
+        source:'26.mp3'},
+        {name:27,
+        source:'27.mp3'},
+        {name:28,
+        source:'28.mp3'},
+        {name:29,
+        source:'29.mp3'},
+        {name:30,
+        source:'30.mp3'},
+        {name:31,
+        source:'31.mp3'},
+        {name:32,
+        source:'32.mp3'},
+        {name:33,
+        source:'33.mp3'},
+        {name:34,
+        source:'34.mp3'},
+        {name:35,
+        source:'35.mp3'},
+    ]
+    const ballsList = document.querySelector('.ballsList')
+    const circleBall = document.createElement('div')
+    const ball = document.createElement('div')
+    const btn = document.querySelector('#btn')
+    const btnAutomatic = document.querySelector('#btnAutomatic')
+    circleBall.classList.add('circleBall')
+    ball.classList.add('circleBall','ball')
+
+
+    const list = []
+
+const generateRandomNumber = (range)=>{
+
+    const randomNum = Math.floor(Math.random()*range)+1
+if (list.indexOf(randomNum)==-1){
+    list.push(randomNum)
+}
+else  
+    generateRandomNumber(range)
+
+return randomNum
+
+}
+
+
+    const sortedList = list.sort((a,b)=>a-b)
+        console.log(sortedList)
+    
+
+
+
+const drawTheList = ()=>{
+    ballsList.textContent=''
+    const sortList = [...list].sort((a,b)=>a-b)
+    
+    sortList.forEach(item => {
+        
+        const ball = document.createElement('div')
+        circleBall.classList.add('circleBall')
+        ball.classList.add('circleBall','ball')
+        ball.textContent=item
+        ballsList.appendChild(ball)
+        
+    });
+    }
+//     const welcomeEvent=()=>{console.log('welcome')
+    
+
+//         const sound = new Audio('./Sounds/WELCOME.MP3')
+//         sound.play()
+    
+// }
+// document.body.addEventListener('mouseover',welcomeEvent)
+const sayIt = number =>{
+    const s = soundList.find(item=>item.name == number)
+    console.log(number)
+    if (s == undefined){ return }
+    const sound = new Audio('./Sounds/'+s.source)
+    sound.play()
+}
+const sayBefore = () =>{
+    
+    const sound = new Audio('./Sounds/THE NEXT NUMBER.mp3')
+    sound.play()
+    setTimeout(()=>{
+        sayIt(list[list.length-1])
+    },1500)
+}
+
+const callNumber = ()=>{
+
+if(list.length<75){
+const randomNumber = generateRandomNumber(75)
+sayBefore()
+circleBall.textContent=list[list.length-1]
+document.body.appendChild(circleBall)
+drawTheList()
+infoDiv.textContent=`${list.length}  : מספר כדורים שהוגרלו  `
+console.log(list)
+ }
+else
+alert('הוצאו כל הכדורים')
+    
+}
+
+btn.addEventListener('click',()=>{
+    
+    callNumber()
+    
+})
+btnAutomatic.addEventListener('click',()=>{
+   console.log('automatic CALLING')
+    
+})
+
+</script>

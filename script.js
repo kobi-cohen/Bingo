@@ -79,6 +79,9 @@ centered.appendChild(circleBall)
 drawTheList()
 infoDiv.textContent=`${list.length}  : מספר כדורים שהוגרלו  `
 console.log(list)
+if (list.length>=24){
+checkWinning()
+}
 }
 else
 alert('הוצאו כל הכדורים')
@@ -95,3 +98,31 @@ callNumber()
 btnAutomatic.addEventListener('click',()=>{
 console.log('automatic CALLING')
 })
+
+
+//check winning card
+let alert24 = false
+const checkWinning = () =>{
+    
+        playingCards.map(card=>{
+            console.log('checking card number' +card.cardNumber)
+            let counter = 0
+            card.numbers.forEach(number=>{
+                console.log('check if the number '+ number + 'exist in the list')
+                if (list.indexOf(number)!=-1){    
+                    counter++
+                }
+                if ((counter==24) && (alert24==false)){
+                    alert24=true
+                    alert('one more for winning '+ card.cardNumber)
+                    
+                }
+                
+                if (counter==25){
+                    alert('card number : '+card.cardNumber + ' is the winner  | card numbers : ['+ card.numbers+']' )
+                    
+                }
+            })
+        })
+    
+}

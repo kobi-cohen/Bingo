@@ -5,7 +5,7 @@ const ballsList = document.querySelector('.ballsList')
 
 const circleBall = document.createElement('div')
 const ball = document.createElement('div')
-const btn = document.querySelector('#btn')
+const btn = document.querySelector('.rollBtn')
 const btnAutomatic = document.querySelector('#btnAutomatic')
 const centered = document.querySelector('.centered')
 circleBall.classList.add('circleBall')

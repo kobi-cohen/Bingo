@@ -1,6 +1,18 @@
+   body{
+    background-color: rgb(114, 96, 72);
+    /* background-image: url('./images/bingo_background_1X1.jpg'); 
+    background-repeat:no-repeat; */
+   }
    .wrapper{
     display: flex;
     flex-direction: column;
+   align-items: center;
+    
+    
+   }
+   .ballsList{
+    margin: 20px;
+    width: 70%;
    }
    .centered{
     display: flex;
@@ -24,17 +36,19 @@
         height: 50px;
         margin: 20px;
     }
-    .roll{
+    .rollBtn{
         margin: 15px;
-        padding: 10px;
+        padding: 20px;
         width: fit-content;
         height: 70px;
-        background-color: aquamarine;
+        background-color: rgb(255, 0, 76);
         border: 2px solid black;
         font-size: 50px;
-        box-shadow: 10px 10px 10px 2px;
+        border-radius: 50px;
+/*         
+        box-shadow: 10px 10px 10px 2px; */
     }
-    .roll:hover{
+    .rollBtn:hover{
         box-shadow: 0px 0px;
         background-color: rgb(34, 56, 49);
         color:rgb(238, 235, 231);

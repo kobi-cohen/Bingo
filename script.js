@@ -7,9 +7,23 @@ const circleBall = document.createElement('div')
 const ball = document.createElement('div')
 const btn = document.querySelector('.rollBtn')
 const btnAutomatic = document.querySelector('#btnAutomatic')
-const centered = document.querySelector('.centered')
+const currentBall = document.querySelector('.currentBall')
 circleBall.classList.add('circleBall')
 ball.classList.add('circleBall','ball')
+
+const programTime = new Date().getTime()
+const startingTime=programTime
+let flag = true
+
+const alert = () =>{
+    
+    const currentTime = new Date().getTime()
+    console.log(programTime)
+    console.log(Math.round((currentTime-startingTime)/1000))
+    
+}
+
+
 
 
 
@@ -51,12 +65,11 @@ sortList.forEach(item => {
 }
 
 //play sound of the number that raized
-const sayIt = number =>{
-const s = soundList.find(item=>item.name == number)
-console.log(number)
-if (s == undefined){ return }
-const sound = new Audio('./Sounds/'+s.source)
-sound.play()
+const sayIt = soundTrack =>{
+const soundItem = soundList.find(item=>item.name == soundTrack)
+if (soundItem == undefined){ return }
+const soundToPlay = new Audio('./Sounds/'+soundItem.source)
+soundToPlay.play()
 }
 
 
@@ -75,7 +88,7 @@ if(list.length<75){
 const randomNumber = generateRandomNumber(75)
 sayBefore()
 circleBall.textContent=list[list.length-1]
-centered.appendChild(circleBall)
+currentBall.appendChild(circleBall)
 drawTheList()
 infoDiv.textContent=`${list.length}  : מספר כדורים שהוגרלו  `
 console.log(list)
@@ -88,16 +101,40 @@ alert('הוצאו כל הכדורים')
 
 }
 
-//button click event - run the main function 
+let delay=0
+let runInterval = null
+let start = false
+let firstTime = true
+
+const rolling = () =>{
+
+    
+    runInterval = setInterval(() => {
+        callNumber()
+    }, 8000);
+}
+    
+
+// button click event - run the main function 
 btn.addEventListener('click',()=>{
-callNumber()
+if (start){
+    start=false
+    btn.textContent='המשך הגרלה'
+    clearInterval(runInterval)
+}else{
+    start=true
+    btn.textContent='הפסק הגרלה'
+    rolling()
+}
 })
+
+
 
 
 //choose automatic number every 15 seconds
-btnAutomatic.addEventListener('click',()=>{
-console.log('automatic CALLING')
-})
+// btnAutomatic.addEventListener('click',()=>{
+// console.log('automatic CALLING')
+// })
 
 
 //check winning card

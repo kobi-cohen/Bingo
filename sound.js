@@ -150,7 +150,13 @@ const soundList = [
     {name:73,
     source:'73.mp3'},
     {name:74,
-    source:'74.mp3'},
+    source:'74.mp3'}, 
     {name:75,
     source:'75.mp3'},
+
+    {name:'welcome',
+    source:'welcome.mp3'},
+
+    {name:'payment',
+    source:'payment.mp3'},
 ]

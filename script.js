@@ -52,7 +52,9 @@ const sortedList = list.sort((a,b)=>a-b)
 
 const drawTheList = ()=>{
 ballsList.textContent=''
-const sortList = [...list].sort((a,b)=>a-b)
+const editedArray = [...list].slice(0,-1)
+const sortList = [...editedArray].sort((a,b)=>a-b)
+console.log(sortedList)
 sortList.forEach(item => {
     const ball = document.createElement('div')
     circleBall.classList.add('circleBall')
